@@ -1,4 +1,4 @@
-# Examples
+# Scratch-n-Sketch
 
 scratch_n_sketch : A kit that teaches you how to code and electronics.
 
