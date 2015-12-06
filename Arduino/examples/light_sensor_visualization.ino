@@ -1,3 +1,9 @@
+/*
+* light sensor visualization demo, graphing
+* (c) 2015 warefab
+* author : muchiri john
+*/
+
 #include <SPI.h>
 #include "scratch_n_sketch.h"
 
@@ -14,7 +20,7 @@ void setup()
 	delay(1000);
 	// position of the line on screen
 	xpos = 10;
-	// clear the screen with a pretty color
+	// clear the screen
 	sns.fillScreen(0, 0, 0);
 	sns.rotateDisplay(sns.rotate.rotate_90);
 	sns.penColor(250, 180, 10);
@@ -28,7 +34,7 @@ void loop()
 	sns.getSensorData();
 	delay(10);
 	drawHeight = (int)(map(sns.sensor.LightSensor, 0, 1023, 10, sns.height-60));
-	// draw a line in a nice color
+	// draw a line
 	sns.drawLine(xpos, sns.height - 10, xpos, sns.height - drawHeight);
 	sprintf(ch, "%04d", sns.sensor.LightSensor);
 	sns.penColor(10, 180, 250);
