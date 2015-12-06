@@ -1,7 +1,7 @@
 /*
 * motor speed control demo, using touch and ir
 * (c) 2015 warefab
-* autho : muchiri john
+* author : muchiri john
 */
 
 #include <SPI.h>
