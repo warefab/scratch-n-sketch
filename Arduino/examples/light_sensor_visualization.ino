@@ -7,7 +7,7 @@ scratch_n_sketch sns;
 
 uint16_t xpos, ypos, drawHeight;
 
-//draw graph : using A0 analog noise
+//draw graph : using light sensor values
 void setup()
 {
 	sns.begin(5);
