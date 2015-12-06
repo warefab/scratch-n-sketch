@@ -1,14 +1,16 @@
+/*
+* motor speed control demo, using touch and ir
+* (c) 2015 warefab
+* autho : muchiri john
+*/
+
 #include <SPI.h>
 #include "scratch_n_sketch.h"
 
 char ch[8];
 
 scratch_n_sketch sns;
-/*
-* motor speed control demo
-* (c) 2015 warefab
-* autho : muchiri john
-*/
+
 uint16_t xpos, ypos, count, pc;
 
 void setup(){
