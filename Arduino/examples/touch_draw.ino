@@ -1,3 +1,8 @@
+/*
+* touch draw demo
+* (c) 2015 warefab
+* author : muchiri john
+*/
 #include <SPI.h>
 #include "scratch_n_sketch.h"
 
