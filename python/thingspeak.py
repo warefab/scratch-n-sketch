@@ -6,8 +6,9 @@ import requests
 url = 'http://api.thingspeak.com/update?api_key=M8WO4AB44AC4S311&field1='
 count = 0
 
+s = scratch_n_sketch()
+
 def setup():
-    s = scratch_n_sketch()
     #autoconnect
     s.connect()
     #set background color
@@ -24,6 +25,7 @@ def setup():
 def post_data():
     #get sensor data
     s.getSensorData()
+    #send light sensor data
     post = url + '{}'.format(s.LightSensor)
     req = requests.post(post)
     if req.status_code == 200:

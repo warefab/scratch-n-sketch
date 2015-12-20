@@ -162,7 +162,7 @@ class scratch_n_sketch(Fonts, Control):
                 else:
                     raise BoardNotFound#Exception('Board not found')
         except:
-            console('cant find board! please reconnect it.')
+            console('cant find board! please connect it.')
             os._exit(0)
 
     #send helper
