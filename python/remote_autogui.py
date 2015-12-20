@@ -17,32 +17,32 @@ rc2 = 0
 while True:
     board.getSensorData()
     rc1 = board.RemoteCode
-    if rc1 != 0:
+    if (rc1 != 0) or (rc1 == rc2):
         board.drawText(rc1, 50, 160)
         #volume up
-        if rc1 == 'E01F':
+        if rc1 == '4BB0':
             pyautogui.press('volumeup')
             board.ledWrite(Red, On)
         #volume down
-        elif rc1 == 'D02F':
-            pyautogui.press('volumedown')
-            board.ledWrite(Green, On)
-        #backspace
-        elif rc1 == '16E9':
-            pyautogui.press('space')
-            board.ledWrite(Blue, On)
-        #right
-        elif rc1 == 'A659':
-            pyautogui.press('right')
-            board.ledWrite(Green, On)
-        #left
-        elif rc1 == '46B9':
-            pyautogui.press('left')
-            board.ledWrite(Green, On)
+        elif rc1 == '5BA0':
+                pyautogui.press('volumedown')
+                board.ledWrite(Green, On)
+            #backspace
+        elif rc1 == '9C60':
+                pyautogui.press('space')
+                board.ledWrite(Blue, On)
+            #right
+        elif rc1 == 'AC50':
+                pyautogui.press('right')
+                board.ledWrite(Green, On)
+            #left
+        elif rc1 == '8C70':
+                pyautogui.press('left')
+                board.ledWrite(Green, On)
         #copy rc2 to rc1
         rc2 = rc1
-    wait(50)
+    wait(100)
     board.ledWrite(All, Off)
-    wait(50)
+    wait(100)
     #disconnect board
 board.disconnect()

@@ -45,7 +45,7 @@ while(1):
     wait(20)
     #clear screen if more than 400 letters drawn
     if r > 400:
-        board.clearScreen()
+        board.clearDisplay()
         r = 0
         yl = 10
         #delay 5ms

@@ -7,13 +7,13 @@ from libs.board import *
 #color wheel method
 def colorWheel(WheelPos):
     if(WheelPos < 85):
-        return board.rgbLed(WheelPos * 3, 255 - WheelPos * 3, 0)
+        return board.rgbLed(WheelPos * 3, 255 - WheelPos * 3, 0, 30)
     elif(WheelPos < 170):
         WheelPos -= 85
-        return board.rgbLed(255 - WheelPos * 3, 0, WheelPos * 3)
+        return board.rgbLed(255 - WheelPos * 3, 0, WheelPos * 3, 30)
     else:
         WheelPos -= 170;
-        return board.rgbLed(0, WheelPos * 3, 255 - WheelPos * 3)
+        return board.rgbLed(0, WheelPos * 3, 255 - WheelPos * 3, 30)
 
 #init
 board = scratch_n_sketch()

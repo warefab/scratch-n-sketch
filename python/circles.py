@@ -27,7 +27,7 @@ for x in range(0, 15):
         mbd.drawCircle(xloc, yloc, 5)
         yloc += 20
         #delay for 10ms
-        #wait(50)
+        wait(50)
 
     xloc += 20
     yloc = 10

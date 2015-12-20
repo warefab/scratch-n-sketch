@@ -45,7 +45,7 @@ for i in range(0, 1000):
         wait(20)
         #clear screen if more than 400 letters drawn
         if r > 400:
-            mbd.clearScreen()
+            mbd.clearDisplay()
             r = 0
             yl = 10
             #delay 5ms

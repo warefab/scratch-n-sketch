@@ -7,15 +7,14 @@ board.connect()
 console('display backlight control')
 #colors
 board.backGroundColor(0, 0, 0)
-board.textBackColor(250, 250, 250)
-board.penColor(250, 250, 250)
+board.textBackColor(0, 0, 0)
 #oi
 board.setFont(Font.terminal )
 #rotate 0
 board.rotateDisplay(board.rotate_0)
 #buttons
-board.fillRoundRectangle(10, 250, 115, 300);
-board.fillRoundRectangle(120, 250, 230, 300);
+board.drawRoundRectangle(10, 250, 115, 300);
+board.drawRoundRectangle(120, 250, 230, 300);
 #headers
 board.penColor(255, 0, 0)
 board.drawText('UP',  50 , 270)

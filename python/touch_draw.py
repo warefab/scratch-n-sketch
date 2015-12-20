@@ -34,23 +34,23 @@ while True:
         #Red
         elif rc == 'EC10':
             board.penColor(255, 0, 0)
-            board.rgbLed(255, 0, 0, 50)
+            board.rgbLed(255, 0, 0, 25)
         #Green
         elif rc == 'DC20' :
             board.penColor(0, 255, 0)
-            board.rgbLed(0, 255, 0, 50)
+            board.rgbLed(0, 255, 0, 25)
         #Yellow
         elif rc == '1BE0':
             board.penColor(255, 255, 0)
-            board.rgbLed(255, 255, 0, 50)
+            board.rgbLed(255, 255, 0, 25)
         #Blue
         elif rc == 'BC40':
             board.penColor(0, 0, 255)
-            board.rgbLed(0, 0, 255, 50)
+            board.rgbLed(0, 0, 255, 25)
         #White
         elif rc == 'FC00':
             board.penColor(255, 255, 255)
-            board.rgbLed(255, 255, 255, 50)
+            board.rgbLed(255, 255, 255, 25)
         #Rubber
         elif rc == '4CB0':
                 board.penColor(0, 0, 0)

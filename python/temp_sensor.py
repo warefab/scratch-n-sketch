@@ -18,7 +18,7 @@ board.rotateDisplay(board.rotate_0)
 #change pen color
 board.penColor(255, 255, 0)
 #draw text - temparature
-board.drawText('TEMPARATURE', 30, 50)
+board.drawText('TEMPERATURE', 40, 50)
 #change pen color
 board.penColor(0, 255, 255)
 #variables
@@ -31,14 +31,18 @@ while True:
     #convert ADC output to millivolts
     voltage = ((board.TempSensor *3300) / 4096)
     #show sensor voltage in mV
-    board.drawText('{0}{1:04.2f}'.format('V  : ', voltage), 35, 100)
+    #board.drawText('{0}{1:04.2f}'.format('V  : ', voltage), 35, 100)
     #get temp in celcius
+    board.setFont(Font.comic)
+    board.drawText('oC', 160, 150)
     celcius = (abs(voltage-500))/10
-    board.drawText('{0}{1:04.2f}'.format('oC : ', celcius), 35, 140)
+    #board.drawText('{0}{1:04.2f}'.format('oC : ', celcius), 35, 140)
+    board.setFont(Font.elephant)
+    board.drawText('{:03d}'.format((int)(celcius)), 55, 160)
     #farenheit
     farenheit = (celcius * 9.0 / 5.0) + 32
-    board.drawText('{0}{1:04.2f}'.format('F  : ', farenheit), 35, 180)
+    #board.drawText('{0}{1:04.2f}'.format('F  : ', farenheit), 35, 180)
     #wait for 250 ms
-    wait(100)
+    wait(250)
 #disconnect board
 board.disconnect()
