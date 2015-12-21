@@ -3,7 +3,7 @@
 from libs.board import *
 import requests
 
-url = 'http://api.thingspeak.com/update?api_key=M8WO4AB44AC4S311&field1='
+url = 'http://api.thingspeak.com/update?api_key=M8WO4key&field1='
 count = 0
 
 s = scratch_n_sketch()
