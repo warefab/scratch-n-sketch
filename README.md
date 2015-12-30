@@ -2,7 +2,7 @@
 
 scratch_n_sketch : A kit that teaches you how to code and electronics.
 
-no compilaton needed just plug the board to the computer and start coding in python or drag and drop using scratch language
+no compilaton needed just plug the board to the computer and start coding in python or drag and drop using scratch language.
 Access to onboard sensors, write to the lcd screen and interface with external sensors e.g temparature, humidity, proximity, sound e.t.c
 
 #python  
