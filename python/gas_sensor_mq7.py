@@ -69,7 +69,7 @@ if __name__ == "__main__":
         #graph 100ms interval
         drawOnScreen()
         #post data after 15 seconds
-        if count == 15:
+        if count == 150:
             post_data()
             count = 0
         else:
