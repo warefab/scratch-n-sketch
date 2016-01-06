@@ -1,5 +1,5 @@
 # scratch_n_sketch
-# graph MQ7 gas sensor on the screen display + send dara to thingspeak
+# graph MQ7 gas sensor on the screen display + send data to thingspeak
 # sensor connected to A1 pin
 from libs.board import *
 import requests
