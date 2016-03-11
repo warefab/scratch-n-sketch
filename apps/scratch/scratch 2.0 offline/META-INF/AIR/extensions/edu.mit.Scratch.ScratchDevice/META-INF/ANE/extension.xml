@@ -1,0 +1,24 @@
+<extension xmlns="http://ns.adobe.com/air/extension/3.9">
+  <id>edu.mit.Scratch.ScratchDevice</id>
+  <versionNumber>1.0</versionNumber>
+  <platforms>
+    <platform name="Windows-x86">
+      <applicationDeployment>
+        <nativeLibrary>ScratchDeviceANE.dll</nativeLibrary>
+        <initializer>ExtensionInitializer</initializer>
+      </applicationDeployment>
+    </platform>
+    <platform name="MacOS-x86">
+      <applicationDeployment>
+        <nativeLibrary>ScratchDeviceANE32.framework</nativeLibrary>
+        <initializer>ExtensionInitializer</initializer>
+      </applicationDeployment>
+    </platform>
+    <platform name="MacOS-x86-64">
+      <applicationDeployment>
+        <nativeLibrary>ScratchDeviceANE64.framework</nativeLibrary>
+        <initializer>ExtensionInitializer</initializer>
+      </applicationDeployment>
+    </platform>
+  </platforms>
+</extension>

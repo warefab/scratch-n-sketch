@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.10.0" build="0" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="edu/mit/Scratch/ScratchSerialDevice" mod="1427839754000" signatureChecksum="1625399708" >
+        <def id="edu.mit.Scratch:ScratchSerialDevice" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="flash.errors:IOError" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="edu/mit/Scratch/ScratchHIDDevice" mod="1427839754000" signatureChecksum="2539882382" >
+        <def id="edu.mit.Scratch:ScratchHIDDevice" /> 
+        <dep id="flash.errors:IOError" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="_cf446142a691a9872b2a2ba43e80c8839f20125b622ae845532dfb3702c228cf_flash_display_Sprite" mod="1438283622620" signatureChecksum="1692236019" >
+        <def id="_cf446142a691a9872b2a2ba43e80c8839f20125b622ae845532dfb3702c228cf_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="edu/mit/Scratch/ScratchDevices" mod="1427839754000" signatureChecksum="3467805052" >
+        <def id="edu.mit.Scratch:ScratchDevices" /> 
+        <dep id="edu.mit.Scratch:ScratchSerialDevice" type="e" /> 
+        <dep id="edu.mit.Scratch:ScratchHIDDevice" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="5978f72052f676ed778d87f60bd05707f0117de0255035e01669bbf0a2a963b4"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>
