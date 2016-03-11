@@ -26,8 +26,6 @@
 		[" ", "Draw %m.types %m.rects at Upper Left Coords X %n Y %n Bottom Right Coords X %n Y %n", "rect","Empty", "Rectangle",  10, 10 ,20, 20],
 		[" ", "Draw %m.types Circle at X %n and Y %n Location with Radius %n", "circle", "Empty", 100, 100, 20],
 		["-"],
-		[" ", "Show %m.icons icon at X %n Y %n Position, Level %n", "icon", "Toggle", 10, 10, 10],
-		[" ", "Show Calendar, Date %n Day of Week %m.dweeks Month %m.months Refresh %m.crefresh", "calendar", 14, "Wed", "Jan", "False"],
 	],
 	"menus": {
 		"analogSensors": ["Angle", "Light", "A1", "A2"],
