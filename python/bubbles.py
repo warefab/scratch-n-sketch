@@ -29,7 +29,7 @@ for i in range(0, 50):
                         randomNumber(0, 255),
                         randomNumber(0, 255))
         #draw a circle at random pos and radius
-        board.fillCircle(randomNumber(20, 300),
+        board.drawCircle(randomNumber(20, 300),
                            randomNumber(20, 200),
                            randomNumber(5, 20))
         #animate with a delay

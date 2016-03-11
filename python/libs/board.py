@@ -171,7 +171,7 @@ class scratch_n_sketch(Fonts, Control):
             if not self.ser.isOpen():
                     self.ser.open()
             #self.ser.flushOutput()
-            self.ser.write(('<' + out + '>').encode())
+            self.ser.write(('[' + out + ']').encode())
             self.ser.flush()
         except:
             console('can\'t communicate with the port!')
@@ -200,7 +200,7 @@ class scratch_n_sketch(Fonts, Control):
         try:
             if not self.ser.isOpen():
                     self.ser.open()
-            self.ser.write(b'<0xE0>')
+            self.ser.write(b'[0xE0]')
             self.ser.flush()
             sensors = (str(self.ser.readline(), 'utf8')).split(',')
             """while (not (len(sensors) == 10)) and blocking == True:
@@ -215,14 +215,14 @@ class scratch_n_sketch(Fonts, Control):
 
     #clear screen
     def clearDisplay(self):
-        data = '{0}|{1}'.format(commands.ctl, 'c')
+        data = '{0},{1}'.format(commands.ctl, 'c')
         self.sendHelper(data)
         #self.errorMsg = 'Failed to clear screen'
     #end
 
     #clear screen
     def digitalWrite(self, l, x):
-        data = '{0}|{1}|{2}'.format(commands.dout, l, x)
+        data = '{0},{1},{2}'.format(commands.dout, l, x)
         self.sendHelper(data)
     #end
 
@@ -231,53 +231,70 @@ class scratch_n_sketch(Fonts, Control):
         r = (r * brightness) >> 8;
         g = (g * brightness) >> 8;
         b = (b * brightness) >> 8;
-        data = '{0}|{1}|{2}|{3}'.format(commands.wsled, r, g, b)
+        data = '{0},{1},{2},{3}'.format(commands.wsled, r, g, b)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to set background color'
     #end
 
     #change background color
     def backGroundColor(self, r, g, b):
-        data = '{0}|{1}|{2}|{3}'.format(commands.fsc, r, g, b)
+        data = '{0},{1},{2},{3}'.format(commands.fsc, r, g, b)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to set background color'
     #end
 
     #change pen color
     def penColor(self, r, g, b):
-        data = '{0}|{1}|{2}|{3}'.format(commands.pen, r, g, b)
+        data = '{0},{1},{2},{3}'.format(commands.pen, r, g, b)
+        self.sendHelper(data)
+        #self.errorMsg = 'Failed to set pen color'
+    #end
+
+    #change brush color
+    def brushColor(self, r, g, b):
+        data = '{0},{1},{2},{3}'.format(commands.sbc, r, g, b)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to set pen color'
     #end
 
     #image begin
-    def imageBegin(self, px, py, img_w, img_h):
-        data = '{0}|c'.format(commands.ime)
+    def drawImage(self, px, py, img_data, img_w, img_h, img_len):
         #self.sendHelper(data)
-        data = data + '><{0}|{1}|{2}|{3}|{4}'.format(commands.ims, px, py, img_w, img_h)
+        data = '{0},{1},{2},{4},{3},{5}'.format(commands.ims, px, py,
+                                                    img_w, img_h, img_len)
         self.sendHelper(data)
-        #self.errorMsg = 'Failed to set text back color'
+        for x in img_data:
+            self.ser.write(int(x))
+            self.ser.write(int(x>8))
+        wait(20)
     #end
 
-    #image data
-    def imageData(self, img):
-        self.sendHelper(img)
-
-    #image end
-    def imageEnd(self):
-        data = '{0}|s'.format(commands.ime)
+    #image begin
+    def drawBitmap(self, px, py, img_data, img_w, img_h, img_len):
+        #self.sendHelper(data)
+        data = '{0},{1},{2},{3},{4},{5}'.format(commands.dbi, px, py,
+                                            img_w, img_h, img_len)
         self.sendHelper(data)
+        wait(20)
+        for x in img_data:
+            data = '[{0},{1}]'.format(commands.btd, x)
+            self.ser.write(data.encode())
+            self.ser.flushOutput()
+        wait(20)
+        for x in range(30):
+            self.sendHelper('0')
+    #end
 
     #change text back color
     def textBackColor(self, r, g, b):
-        data = '{0}|{1}|{2}|{3}'.format(commands.tbc, r, g, b)
+        data = '{0},{1},{2},{3}'.format(commands.tbc, r, g, b)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to set text back color'
     #end
 
     #draw text
     def drawText(self, text, xpos, ypos):
-        data = '{0}|{1}|{2}|{3}'.format(commands.txt, text,
+        data = '{0},{2},{3},{1}'.format(commands.txt, text,
                                         xpos, ypos)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
@@ -285,7 +302,7 @@ class scratch_n_sketch(Fonts, Control):
 
     #erase text from specified position
     def eraseText(self, num, xpos, ypos):
-        data = '{0}|{1}|{2}|{3}'.format(commands.ers, num,
+        data = '{0},{1},{2},{3}'.format(commands.ers, num,
                                         xpos, ypos)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
@@ -293,135 +310,122 @@ class scratch_n_sketch(Fonts, Control):
 
     #draw pixel
     def drawPixel(self, x, y):
-        data = '{0}|{1}|{2}'.format(commands.dpx, x, y)
+        data = '{0},{1},{2}'.format(commands.dpx, x, y)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw filled rectangle
     def drawLine(self, x1, y1, x2, y2):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.drl, x1, y1, x2, y2)
+        data = '{0},{1},{2},{3},{4}'.format(commands.drl, x1, y1, x2, y2)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw filled rectangle
     def fillRectangle(self, x1, y1, x2, y2):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.frt, x1, y1, x2, y2)
+        data = '{0},{1},{2},{3},{4}'.format(commands.frt, x1, y1, x2, y2)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw empty rectangle
     def drawRectangle(self, x1, y1, x2, y2):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.drt, x1, y1, x2, y2)
+        data = '{0},{1},{2},{3},{4}'.format(commands.drt, x1, y1, x2, y2)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw empty round rectangle
     def fillRoundRectangle(self, x1, y1, x2, y2):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.frr, x1, y1, x2, y2)
+        data = '{0},{1},{2},{3},{4}'.format(commands.frr, x1, y1, x2, y2)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw filled round rectangle
     def drawRoundRectangle(self, x1, y1, x2, y2):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.drr, x1, y1, x2, y2)
+        data = '{0},{1},{2},{3},{4}'.format(commands.drr, x1, y1, x2, y2)
+        self.sendHelper(data)
+        #self.errorMsg = 'Failed to draw text'
+    #end
+
+    #draw empty triangle
+    def drawTriangle(self, x0, y0, x1, y1, x2, y2):
+        data = '{0},{1},{2},{3},{4},{5},{6}'.format(commands.dtr, x0, y0,
+                                      x1, y1, x2, y2)
+        self.sendHelper(data)
+        #self.errorMsg = 'Failed to draw text'
+    #end
+
+    #fill triangle
+    def fillTriangle(self, x0, y0, x1, y1, x2, y2):
+        data = '{0},{1},{2},{3},{4},{5},{6}'.format(commands.ftr, x0, y0,
+                                      x1, y1, x2, y2)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw filled circle
     def fillCircle(self, x, y, r):
-        data = '{0}|{1}|{2}|{3}'.format(commands.fcr, x, y, r)
+        data = '{0},{1},{2},{3}'.format(commands.fcr, x, y, r)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw empty circle
     def drawCircle(self, x, y, r):
-        data = '{0}|{1}|{2}|{3}'.format(commands.dcr, x, y, r)
+        data = '{0},{1},{2},{3}'.format(commands.dcr, x, y, r)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw filled ellipse
     def fillEllipse(self, x, y, w, h):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.fep, x, y, w, h)
+        data = '{0},{1},{2},{3},{4}'.format(commands.fep, x, y, w, h)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw empty ellipse
     def drawEllipse(self, x, y, w, h):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.dep, x, y, w, h)
+        data = '{0},{1},{2},{3},{4}'.format(commands.dep, x, y, w, h)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #draw arc
     def drawArc(self, x, y, s, e, r, t):
-        data = '{0}|{1}|{2}|{3}|{4}|{5}|{6}'.format(commands.dac, x,
-                                                    y, s, e, r, t)
-        self.sendHelper(data)
-        #self.errorMsg = 'Failed to draw text'
-    #end
-    """
-    #draw battery level icon
-    def drawBatteryIcon(self, x, y, l):
-        data = '{0}|{1}|{2}|{3}'.format(commands.bli, x, y, l)
+        data = '{0},{1},{2},{3},{4},{5},{6}'.format(commands.dac, x,
+                                            y, s, e, r, t)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
-    #draw progress bar icon
-    def drawProgressIcon(self, x, y, l):
-        data = '{0}|{1}|{2}|{3}'.format(commands.pgi, x, y, l)
-        self.sendHelper(data)
-        #self.errorMsg = 'Failed to draw text'
-    #end
-
-    #draw toggle icon
-    def drawToggleIcon(self, x, y, st):
-        data = '{0}|{1}|{2}|{3}'.format(commands.tgi, x, y, st)
-        self.sendHelper(data)
-        #self.errorMsg = 'Failed to draw text'
-    #end
-
-    #show calendar icon
-    def showCalendar(self, dt, wk, mth, rh):
-        data = '{0}|{1}|{2}|{3}|{4}'.format(commands.cal, dt,
-                                        wk, mth, rh)
-        self.sendHelper(data)
-        #self.errorMsg = 'Failed to draw text'
-    #end
-    """
     #set font
     def setFont(self, x):
-        data = '{0}|{1}'.format(commands.fnt, x)
+        data = '{0},{1}'.format(commands.fnt, x)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #rotate display
     def rotateDisplay(self, x):
-        data = '{0}|{1}'.format(commands.ctl, x)
+        data = '{0},{1}'.format(commands.ctl, x)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #power control
     def powerControl(self, x):
-        data = '{0}|{1}'.format(commands.ctl, x)
+        data = '{0},{1}'.format(commands.ctl, x)
         self.sendHelper(data)
         #self.errorMsg = 'Failed to draw text'
     #end
 
     #set screen brightness
     def displayBrightness(self, l):
-        data = '{0}|{1}'.format(commands.bgt, l)
+        data = '{0},{1}'.format(commands.bgt, l)
         self.sendHelper(data)
         wait(1)
         #self.errorMsg = 'Failed to draw text'
@@ -429,7 +433,7 @@ class scratch_n_sketch(Fonts, Control):
 
     #led write
     def ledWrite(self, l, x):
-        data = '{0}|{1}|{2}'.format(commands.led, l, x)
+        data = '{0},{1},{2}'.format(commands.led, l, x)
         self.sendHelper(data)
         wait(1)
         #self.errorMsg = 'Failed to draw text'

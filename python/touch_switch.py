@@ -41,11 +41,11 @@ while True:
     #board.drawText('x : {0:03d}  y : {1:03d}'.format(xpos, ypos), 50, 120)
     #on touch button
     if (xpos>169 and xpos<488) and (ypos>746 and ypos<875):
-        board.ledWrite(Blue, On)
+        board.ledWrite(Green, On)
         board.drawText('STATUS : ON ', 40, 120)
     #off touch button
     if (xpos>532 and xpos<875) and (ypos>746 and ypos<875):
-        board.ledWrite(Blue, Off)
+        board.ledWrite(Green, Off)
         board.drawText('STATUS : OFF', 40, 120)
     #delay for 50 ms
     wait(50)

@@ -35,5 +35,5 @@ while True:
     else:
         #increment the horizontal position:
         xpos+=1
-    wait(100)
+    wait(50)
 s.disconnect()

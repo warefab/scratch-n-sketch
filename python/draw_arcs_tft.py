@@ -48,7 +48,7 @@ for i in range(3):
     while 1:
         if not deg < 10 : st = deg - 5
         else: st = deg
-        board.drawArc(xp, yp, st, deg, r, 5)
+        board.drawArc(xp, yp, st, deg, r, 2)
         if not lf :
             wait(10)
             board.drawText(join(int(map(deg, 0, 360, 0, 100)), '%') , xp - 18, yp-8)

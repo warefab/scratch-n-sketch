@@ -44,7 +44,7 @@ def find_port(port):
                 try:
                     cser = serial.Serial(prt, 230400, timeout = 1)
                     for i in range(0, 10):
-                        cser.write(b'<0xA4>')
+                        cser.write(b'[0xA4]')
                         cser.flush()
                     if 'WFSN215V1' in (str(cser.readline(), 'utf8')):
                         cser.close()

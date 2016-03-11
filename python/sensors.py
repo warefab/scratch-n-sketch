@@ -26,6 +26,7 @@ board.drawText('Temparature', 120, 230)
 while True:
     #get sensor data
     board.getSensorData()
+    wait(20)
     #show light sensor
     board.drawText('{:04d}'.format(board.LightSensor), 35, 50)
     #show touch x and y pos
@@ -43,6 +44,6 @@ while True:
     #temp sensor
     board.drawText('{:04d}'.format(board.TempSensor), 135, 250)
     #wait for 100ms
-    wait(200)
+    wait(100)
 #disconnect board
 board.disconnect()
