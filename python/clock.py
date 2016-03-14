@@ -8,9 +8,9 @@ scosConst = 0.0174532925
 
 def drawClockFace():
 
-    board.penColor(25, 255, 155)
+    board.brushColor(25, 255, 155)
     board.fillCircle(ccenterx, ccentery, cradius);
-    board.penColor(0, 0, 0)
+    board.brushColor(0, 0, 0)
     board.fillCircle(ccenterx, ccentery, cradius-4);
     #Draw 12 lines
     #console([ccenterx, ccentery])
@@ -70,16 +70,16 @@ def main():
         sy = math.sin((sdeg-90)*scosConst)
 
         #Erase just old hand positions
-        board.penColor(0, 0, 0)
+        board.brushColor(0, 0, 0)
         board.fillCircle(ccenterx, ccentery, cradius - 14)
         #Draw new hand positions
-        board.penColor(255, 255, 255)
+        board.brushColor(255, 255, 255)
         board.drawLine(int(hx*(cradius-56)+ccenterx+1), int(hy*(cradius-28)+ccentery+1), ccenterx+1, ccentery+1);
         board.penColor(255, 0, 255)
         board.drawLine(int(mx*(cradius-34)+ccenterx+1), int(my*(cradius-17)+ccentery+1), ccenterx+1, ccentery+1);
         board.penColor(0, 255, 255)
         board.drawLine(int(sx*(cradius-16)+ccenterx+1), int(sy*(cradius-14)+ccentery+1), ccenterx+1, ccentery+1);
-        board.penColor(255, 0, 0)
+        board.brushColor(255, 0, 0)
         board.fillCircle(ccenterx+1, ccentery+1, 3);
 
         #Update old x&y coords

@@ -1,12 +1,12 @@
 
 from libs.board import *
 
-s = scratch_n_sketch()
-s.connect()
+board = scratch_n_sketch()
+board.connect()
 
 for x in range(1020):
-    s.ledWrite(All, On)
+    board.ledWrite(All, On)
     wait(250)
-    s.ledWrite(All, Off)
+    board.ledWrite(All, Off)
     wait(250)
-s.disconnect()
+board.disconnect()

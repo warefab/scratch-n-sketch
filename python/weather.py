@@ -18,7 +18,7 @@ s.rotateDisplay(s.rotate_0)
 s.drawRoundRectangle(5, 10, 235, 300)
 s.drawLine(5, 50, 235, 50)
 s.drawText('WEATHER INFO', 40, 25)
-s.drawText("SEARCHING ...", 10, 150)
+s.drawText('SEARCHING ...', 10, 150)
 s.rgbLed(255, 0, 0, 50)
 wait(50)
 while(true):

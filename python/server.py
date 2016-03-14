@@ -1,11 +1,6 @@
 """
 "
-" WiFi Server for LinkIt One
-"
-" LTerminal.py
-"
-" Author: Muchiri John
-" Feb 05 2015
+" control scratch-n-sketch through a browser
 "
 """
 from libs.board import *
